@@ -1,3 +1,4 @@
+require("dotenv").config();
 export async function POST(req, res) {
   const { email, discord, message, name } = await req.json();
   let nodemailer = require("nodemailer");
@@ -6,10 +7,14 @@ export async function POST(req, res) {
     host: "keyhelp.service.nexocrew.space",
     auth: {
       user: "noreply@jesperrichert.xyz",
-      pass: "NN*&tq#8$@JmTqfudN",
+      pass: process.env.EMAIL_PASSWORD,
     },
     secure: true,
   });
+
+
+    console.log(process.env.EMAIL_PASSWORD);
+    
 
   const mailData = {
     from: "noreply@jesperrichert.xyz",
